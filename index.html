@@ -1,32 +1,74 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="sr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prodaja Majica</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prodaja Majica - Kontakt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #001f3f;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #003366;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #0074D9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Online Prodaja Majica</h1>
-    <p>Moderne majice poznatih brendova</p>
-  </header>
 
-  <section class="gallery">
-    <div class="product">
-      <img src="burberry.jpg" alt="Burberry majica" />
-      <h3>Burberry Majica</h3>
-      <p>Cijena: 30€</p>
-    </div>
-    <div class="product">
-      <img src="dior.jpg" alt="Dior majica" />
-      <h3>Dior Majica</h3>
-      <p>Cijena: 35€</p>
-    </div>
-  </section>
+    <h1>Kontaktirajte nas</h1>
 
-  <footer>
-    <p>Za porudžbine: <a href="mailto:kontakt@email.com">kontakt@email.com</a></p>
-  </footer>
+    <form action="https://formspree.io/f/xvgaddrb" method="POST">
+        <label for="name">Ime i Prezime:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email adresa:</label>
+        <input type="email" id="email" name="_replyto" required />
+
+        <label for="message">Poruka:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Pošalji poruku</button>
+    </form>
+
 </body>
 </html>
