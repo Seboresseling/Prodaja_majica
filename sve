@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prodaja Majica</title>
+    <style>
+        body {
+            background-color: #001f3f;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        h1 {
+            color: #0074D9;
+        }
+        .majica {
+            margin: 20px;
+        }
+        img {
+            max-width: 300px;
+            border: 3px solid #0074D9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dobrodošli na Prodaju Majica</h1>
+    <div class="majica">
+        <h2>Majica 1</h2>
+        <img src="FBAA1042-0882-4A19-A609-E6DC44E32EAC.jpeg" alt="Majica 1" />
+    </div>
+    <div class="majica">
+        <h2>Majica 2</h2>
+        <img src="E31773FA-E6DD-48AE-A55C-1879BCF6B585.jpeg" alt="Majica 2" />
+    </div>
+    <div class="majica">
+        <h2>Majica 3</h2>
+        <img src="1C3C63F9-EC42-4E4E-BD49-F55375F222D0.jpeg" alt="Majica 3" />
+    </div>
+</body>
+</html>
