@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prodaja Majica</title>
+  <style>
+    body { font-family: Arial; background-color: #0a0a0a; color: white; margin: 0; padding: 0; }
+    header { background-color: #101c2c; padding: 20px; text-align: center; }
+    .container { padding: 20px; max-width: 900px; margin: auto; }
+    .product { background-color: #1a1a1a; border: 1px solid #333; border-radius: 10px; padding: 15px; margin: 15px 0; }
+    .product img { width: 100%; max-width: 300px; display: block; margin-bottom: 10px; }
+    .product h3 { margin: 10px 0; }
+    .product button { background-color: #0077cc; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+    .cart { background-color: #1f1f1f; padding: 15px; border-radius: 10px; margin-top: 30px; }
+    input, textarea { width: 100%; padding: 8px; margin: 8px 0; border-radius: 5px; border: none; }
+    form button { background-color: #28a745; padding: 10px; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Prodaja Majica</h1>
+  </header>
+  <div class="container">
+    <div class="product" data-name="Burberry" data-price="25">
+      <img src="images/burberry.jpg" alt="Burberry majica">
+      <h3>Burberry</h3>
+      <p>25€</p>
+      <button onclick="addToCart(this)">Dodaj u korpu</button>
+    </div>
+    <div class="product" data-name="Dior" data-price="30">
+      <img src="images/dior.jpg" alt="Dior majica">
+      <h3>Dior</h3>
+      <p>30€</p>
+      <button onclick="addToCart(this)">Dodaj u korpu</button>
+    </div>
+
+    <!-- Dodaj nove majice ovdje prema šablonu -->
+
+    <div class="cart">
+      <h2>Vaša korpa</h2>
+      <ul id="cart-items"></ul>
+      <p><strong>Ukupno:</strong> <span id="total">0</span>€</p>
+
+      <form action="https://formspree.io/f/xvgaddrb" method="POST">
+        <input type="hidden" name="porudzbina" id="orderDetails">
+        <label>Ime:</label>
+        <input type="text" name="ime" required>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <label>Adresa:</label>
+        <input type="text" name="adresa" required>
+        <label>Telefon:</label>
+        <input type="text" name="telefon" required>
+        <label>Poruka:</label>
+        <textarea name="poruka"></textarea>
+        <button type="submit">Pošalji porudžbinu</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const cart = [];
+
+    function addToCart(button) {
+      const product = button.parentElement;
+      const name = product.dataset.name;
+      const price = parseFloat(product.dataset.price);
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById("cart-items");
+      const totalSpan = document.getElementById("total");
+      const orderInput = document.getElementById("orderDetails");
+
+      cartList.innerHTML = "";
+      let total = 0;
+      let summary = "";
+
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ${item.price}€`;
+        cartList.appendChild(li);
+        total += item.price;
+        summary += `${item.name} - ${item.price}€\n`;
+      });
+
+      totalSpan.textContent = total.toFixed(2);
+      orderInput.value = summary + "Ukupno: " + total.toFixed(2) + "€";
+    }
+  </script>
+</body>
+</html>
