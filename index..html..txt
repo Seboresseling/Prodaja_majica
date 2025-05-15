@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prodaja Majica</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f0f0f0; }
+    .products { display: flex; flex-wrap: wrap; gap: 20px; padding: 20px; }
+    .product { background: white; border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center; }
+    .product img { width: 100%; height: auto; }
+    .cart { position: fixed; right: 20px; top: 20px; background: white; border: 1px solid #ccc; padding: 10px; width: 250px; max-height: 400px; overflow-y: auto; }
+    .cart h2 { margin-top: 0; }
+    button { background: #0070ba; color: white; border: none; padding: 10px; cursor: pointer; }
+    button:hover { background: #005c99; }
+  </style>
+</head>
+<body>
+
+  <h1>Prodaja Majica</h1>
+
+  <div class="products" id="products">
+    <!-- Ovde će biti proizvodi -->
+  </div>
+
+  <div class="cart" id="cart">
+    <h2>Korpa</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Ukupno: €<span id="total">0</span></strong></p>
+    <button onclick="checkout()">Plati PayPal-om</button>
+  </div>
+
+  <script>
+    // Proizvodi sa slikama i cenama
+    const products = [
+      {
+        name: "Loui Vuiton",
+        price: 35,
+        img: "https://i.imgur.com/ZhCV4gu.jpg"  // primer direktnog imgur linka slike
+      },
+      {
+        name: "Fendi",
+        price: 30,
+        img: "https://i.imgur.com/k2BBRZa.jpg"
+      },
+      {
+        name: "Off White",
+        price: 50,
+        img: "https://i.imgur.com/nOB0zfy.jpg"
+      },
+      {
+        name: "Burbery",
+        price: 30,
+        img: "https://i.imgur.com/VrGIfxW.jpg"
+      },
+      {
+        name: "Dior",
+        price: 40,
+        img: "https://i.imgur.com/RJOkMue.jpg"
+      }
+    ];
+
+    // Prikaži proizvode u divu products
+    const productsDiv = document.getElementById('products');
+    products.forEach(product => {
+      const prodDiv = document.createElement('div');
+      prodDiv.className = 'product';
+      prodDiv.innerHTML = `
+        <img src="${product.img}" alt="${product.name}" />
+        <h3>${product.name}</h3>
+        <p>€${product.price}</p>
+        <button onclick="addToCart('${product.name}', ${product.price})">Dodaj u korpu</button>
+      `;
+      productsDiv.appendChild(prodDiv);
+    });
+
+    let cartItems = [];
+    const cartList = document.getElementById('cart-items');
+    const totalSpan = document.getElementById('total');
+
+    function addToCart(name, price) {
+      cartItems.push({name, price});
+      renderCart();
+    }
+
+    function renderCart() {
+      cartList.innerHTML = '';
+      let total = 0;
+      cartItems.forEach((item, i) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - €${item.price}`;
+        cartList.appendChild(li);
+      });
+      totalSpan.textContent = total.toFixed(2);
+    }
+
+    function checkout() {
+      alert('Checkout će uskoro biti implementiran sa PayPal-om.');
+      // Ovde možeš ubaciti PayPal integraciju kasnije
+    }
+  </script>
+
+</body>
+</html>
