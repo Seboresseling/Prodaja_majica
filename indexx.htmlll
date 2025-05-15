@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prodaja Majica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #001f3f; /* tamno plava pozadina */
+      color: white;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .product {
+      border: 1px solid #0074D9;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+      vertical-align: top;
+      background: #003366;
+      border-radius: 8px;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .product button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 8px;
+      background-color: #0074D9;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .cart {
+      background: #003366;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    .cart h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prodaja Majica</h1>
+
+  <div id="products">
+    <div class="product">
+      <img src="images/majica1.jpg" alt="Majica 1" />
+      <h3>Majica Crvena</h3>
+      <p>Cena: 1500 RSD</p>
+      <button onclick="addToCart('Majica Crvena', 1500)">Dodaj u korpu</button>
+    </div>
+
+    <div class="product">
+      <img src="images/majica2.jpg" alt="Majica 2" />
+      <h3>Majica Plava</h3>
+      <p>Cena: 1700 RSD</p>
+      <button onclick="addToCart('Majica Plava', 1700)">Dodaj u korpu</button>
+    </div>
+
+    <div class="product">
+      <img src="images/majica3.jpg" alt="Majica 3" />
+      <h3>Majica Bela</h3>
+      <p>Cena: 1400 RSD</p>
+      <button onclick="addToCart('Majica Bela', 1400)">Dodaj u korpu</button>
+    </div>
+  </div>
+
+  <div class="cart" id="cart">
+    <h2>Korpa</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Ukupno: </strong><span id="total">0</span> RSD</p>
+    <button onclick="checkout()">Kupi</button>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({name, price});
+      total += price;
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      cart.forEach((item, i) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - ${item.price} RSD`;
+        cartItems.appendChild(li);
+      });
+      document.getElementById('total').textContent = total;
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('Korpa je prazna!');
+        return;
+      }
+      // Ovdje bi išao kod za slanje podataka sa forme na email ili servis, npr. Formspree
+      alert('Hvala na kupovini! (Ova funkcija još nije povezana sa email notifikacijom.)');
+    }
+  </script>
+
+</body>
+</html>
